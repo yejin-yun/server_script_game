@@ -1,0 +1,24 @@
+package model;
+
+public class Result {
+	int cnt;
+	Ending end;
+	
+	public Ending getEnd() {
+		return end;
+	}
+
+	public void setEnd(Ending end) {
+		this.end = end;
+	}
+
+	public int getCnt() {
+		return cnt;
+	}
+
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+	
+	
+}

@@ -1,0 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"
+    errorPage="error01.jsp" %>
+    <%-- 오류가 발생하면 바로  errorPage="error01.jsp로 감. --%>
+<%
+	String age = request.getParameter("age");
+	//age를 int로 변환 
+
+	int myage = Integer.parseInt(age);
+	out.println("my age: " + myage);
+%>

@@ -1,0 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	${user.uid}님 반갑습니다.<br>
+	<!-- 여기서 리스트를 보여주는 것은 또다른 요청을 통해서 만들어진다고 생각.  -->
+</body>
+</html>

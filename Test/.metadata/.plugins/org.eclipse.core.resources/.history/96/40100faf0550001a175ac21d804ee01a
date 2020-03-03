@@ -1,0 +1,9 @@
+package model;
+
+public class Ending {
+	int id;
+	String title;
+	int cnt;
+	String url;
+	
+}

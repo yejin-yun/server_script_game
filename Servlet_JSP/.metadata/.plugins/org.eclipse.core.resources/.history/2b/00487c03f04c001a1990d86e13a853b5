@@ -1,0 +1,16 @@
+package com.w;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
+
+public class RequestWrapper extends HttpServletRequestWrapper {
+	HttpServletRequest request;
+	
+	public RequestWrapper(HttpServletRequest request) {
+		super(request);
+		// TODO Auto-generated constructor stub//생
+		//생성자에서는 request 객체를 전역으로 받아달라
+		this.request = request;
+	}
+
+}

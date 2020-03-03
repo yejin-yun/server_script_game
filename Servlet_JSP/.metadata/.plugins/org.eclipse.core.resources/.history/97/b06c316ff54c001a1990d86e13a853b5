@@ -1,0 +1,25 @@
+package com.w;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletResponseWrapper;
+
+public class ResponseWrapper extends HttpServletResponseWrapper {
+	HttpServletResponseWrapper response;
+	
+	public ResponseWrapper(HttpServletResponse response) {
+		super(response);
+		// TODO Auto-generated constructor stub
+		this.response = response;
+	}
+
+	//쿠키를 조작하는 부분
+	@Override
+	public void addCookie(Cookie cookie) {
+		// TODO Auto-generated method stub
+		System.out.println("[응답래퍼]원데이터 " + cookie.getValue());
+		cookie.setValue(cookie.getValue().toLowerCase());
+		//super.addCookie(cookie);
+	}
+
+}

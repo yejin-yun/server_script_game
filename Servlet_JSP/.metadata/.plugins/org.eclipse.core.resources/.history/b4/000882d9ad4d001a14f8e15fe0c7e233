@@ -1,0 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%!
+	Connection conn = null;
+	//초기화는 jsp가 한번 올라올 때 그 때 호출되는 단 한번의 메소드. 여기에 멤버변수 초기화를 함.
+	public void jspInit() {
+		System.out.println("멤버변수 초기화 : DB연결");
+	}
+	
+	public void jspDestroy() { //소멸할 때는 멤버변수 해제
+		System.out.println("멤버변수 해제 : DB연결 종료");
+	}
+%>

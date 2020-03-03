@@ -1,0 +1,114 @@
+package com.servlet;
+
+import java.io.IOException;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import java.sql.*;
+
+/**
+ * Servlet implementation class Connection
+ */
+@WebServlet(name = "conn", urlPatterns = { "/conn" })
+public class Connection extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Connection() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see Servlet#init(ServletConfig)
+	 */
+	public void init(ServletConfig config) throws ServletException {
+		// TODO Auto-generated method stub
+	}
+
+	/**
+	 * @see Servlet#destroy()
+	 */
+	public void destroy() {
+		// TODO Auto-generated method stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		//String identifier = request.getParameter("identifier");
+		System.out.println("DBConnection 호출됨");
+		
+		try{
+			DBConnectionTest();
+		}
+		catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} 
+		catch (SQLException e) { //함수안에서 해결 안해주므로 그 함수를 호출한 여기에서 해줘야됨.  
+			e.printStackTrace(); 
+		}
+
+	}
+	//https://blog.outsider.ne.kr/6
+	public void DBConnectionTest() throws ClassNotFoundException, SQLException {
+		System.out.println("3");
+		Connection conn = getConnection();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		String sql = "select * from HumanInfo";
+		try {
+			System.out.println("mysql 접속됨");
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				System.out.println(rs.getString("age"));
+				System.out.println(rs.getString("name"));
+			}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		finally {
+			try{
+				ps.close();
+				conn.close();
+				rs.close();
+				System.out.println("mysql end");
+			}
+			catch(SQLException e) { //얘는 이 함수 전체에서 생긴 sqlexception을 처리한 게 아니라 안에 속한 작은 try에서 발생된 sqlexception을 처리한 거. 그래서 main에서 에러가 남. 
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	private Connection getConnection() throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.jdbc.Driver");
+		String url = "jdbc:mysql://localhost/test";
+		
+		Connection c = DriverManager.getConnection(url, "owner", "1234");
+		
+		return c;
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}

@@ -1,0 +1,33 @@
+package com.db;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet(name = "DBConnect", description = "데이터베이스 접속 테스트", urlPatterns = { "/DBConnect" })
+public class DBTest extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    public DBTest() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		//DB 접속 확인
+		String url = "jdbc:mysql://localhost:3306";
+		String id = "";
+		String pw = "";
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}

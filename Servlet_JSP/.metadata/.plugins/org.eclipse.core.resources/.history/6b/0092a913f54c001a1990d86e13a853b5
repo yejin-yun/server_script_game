@@ -1,0 +1,7 @@
+package com.w;
+
+import javax.servlet.http.HttpServletResponseWrapper;
+
+public class ResponseWrapper extends HttpServletResponseWrapper {
+
+}

@@ -1,0 +1,11 @@
+package model1;
+
+public class Board {
+	int bno 			// int not null auto_increment,
+	String title 		// varchar(200) not null,
+	String content		// text null,
+	String writer 		// varchar(50) not null,
+	Date regdate 		// timestamp not null default now(),
+	int viewcnt 		// int default 0,
+	int replycnt 		// int default 0,
+}

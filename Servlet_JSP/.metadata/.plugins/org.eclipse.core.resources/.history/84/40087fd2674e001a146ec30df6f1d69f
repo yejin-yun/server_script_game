@@ -1,0 +1,52 @@
+package com.db;
+
+import java.io.IOException;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+@WebServlet(name = "pt", description = "커넥션 풀링 테스트", urlPatterns = { "/pt" })
+public class poolTest extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    public poolTest() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	public void init(ServletConfig config) throws ServletException {
+		// TODO Auto-generated method stub
+		try {
+			Context initCtx = new InitialContext();
+			Context envCtx = (Context)initCtx.lookup("java:comp/env"); //이 자체가 또하나의 컨텍스트가 됨. 컨텍스트 캐스팅해서 envCtx로 받음
+			//환경변수까지 들어왔고 여기서 이제 lookup을 또 함. 
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void destroy() {
+		// TODO Auto-generated method stub
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}
