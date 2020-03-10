@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "985111074260",
+    "firebase_url": "https://escapedragoncastle.firebaseio.com",
+    "project_id": "escapedragoncastle",
+    "storage_bucket": "escapedragoncastle.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:985111074260:android:eba39c95163c823758f241",
+        "android_client_info": {
+          "package_name": "com.example.test_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "985111074260-tht471ncetu9qkjeoog2nq81c6q89vpg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.test_firebase",
+            "certificate_hash": "42bed9fc4e4c37f0ab1919885dc7124de6f16823"
+          }
+        },
+        {
+          "client_id": "985111074260-gfbtba916s80qi74jsn2rqe95kketa8m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAto05OvRzX9FL3KLbTbWgU3iKOrm1JS5Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "985111074260-gfbtba916s80qi74jsn2rqe95kketa8m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

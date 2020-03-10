@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Test_Firebase</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_ending2">Ending2Activity</string>
+    <string name="goToEnd2">엔딩2</string>
+    <string name="go10_1">10-1</string>
+    <string name="endCol">Ending Collection</string>
+</resources>
