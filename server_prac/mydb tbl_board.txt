@@ -1,0 +1,26 @@
+create table tbl_board(
+	bno int not null auto_increment,
+	title varchar(200) not null,
+	content text null,
+	writer varchar(50) not null,
+	regdate timestamp not null default now(),
+	viewcnt int default 0,
+	replycnt int default 0,
+	primary key(bno)
+);
+
+//행 삽입
+insert into tbl_board(title, content, writer) values('jsp', 'jsp는 자바로 만든 서버페이지 입니다.', 'guest');
+insert into tbl_board(title, content, writer) values('servlet', 'servlet은 자바로 만든 서버코드 입니다.', 'guest');
+//회원 테이블 --> idx, 아이디, 비번, 가입일 
+create table tbl_user(
+	idx int(11) not null auto_increment,
+	uid varchar(50) not null, 
+	upw varchar(50) not null, 
+	regdate timestamp not null default now(),
+	primary key(idx)
+);
+
+insert into tbl_user(uid, upw) values('guest', '1234');
+insert into tbl_user(uid, upw) values('kkk', '1111');
+
