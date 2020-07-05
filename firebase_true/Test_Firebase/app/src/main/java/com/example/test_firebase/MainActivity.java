@@ -58,8 +58,8 @@ public class MainActivity extends AppCompatActivity {
             requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 0);
         }
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton fab = findViewById(R.id.fab); //디비와 관련 없는 거.
+        fab.setOnClickListener(new View.OnClickListener() {  //디비와 관련 없는 거.
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -116,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 increse_cnt(database.getReference().child("endingCnt").child(String.valueOf(position)));
+                Log.d("test", "1");
             }
         });
     }
@@ -126,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
         database.getReference().child("endingCnt").child(String.valueOf(position)).addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) { //데이터의 변경사항을 기다림.(콜백함수) 즉 데이터가 변경되면 반응함.
                 EndingCnt ec = dataSnapshot.getValue(EndingCnt.class);
                 int cnt = ec.getCnt() + 1; //얘를 intent에 넣어서 전해주면 될 듯.
                 System.out.println(cnt);
@@ -143,7 +144,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void increse_cnt(DatabaseReference postRef) { //카운트 동기화 방지인 트랜잭션으로 저장
+    //카운트 동기화 방지인 트랜잭션으로 저장
+    //https://firebase.google.com/docs/database/android/read-and-write?hl=ko
+    //doTransaction은 여러번 호출되므로 null 처리를 해줘야 함.
+    private void increse_cnt(DatabaseReference postRef) { //DB의 position이 있는 위치의 주소를 넘기는 것인듯
         postRef.runTransaction(new Transaction.Handler() {
             @NonNull
             @Override
@@ -166,17 +170,24 @@ public class MainActivity extends AppCompatActivity {
 
                 ec.setCnt(cnt);
                 mutableData.setValue(ec);
+                Log.d("test", "2");
                 return Transaction.success(mutableData);
+
             }
 
             @Override
             public void onComplete(@Nullable DatabaseError databaseError, boolean b, @Nullable DataSnapshot dataSnapshot) {
+                //첫번째 인자는 오류객체로 정상적으로 트랜잭션이 이루어졌다면 null값을 가짐.
+                // 2번째 인자에는 committed로 true, 3번째 인자에는 트랜젝션의 결과값을 담은 객체가 전달됨.
+                //https://books.google.co.kr/books?id=gzEmDwAAQBAJ&pg=PA396&lpg=PA396&dq=%ED%8C%8C%EC%9D%B4%EC%96%B4%EB%B2%A0%EC%9D%B4%EC%8A%A4+onComplete&source=bl&ots=bVl_-8S6MN&sig=ACfU3U1JmVaNzpIspvwG8eA1f8OrKDXGDw&hl=ko&sa=X&ved=2ahUKEwiD98jH0rbqAhUbIIgKHXZUC50Q6AEwA3oECAoQAQ#v=onepage&q=%ED%8C%8C%EC%9D%B4%EC%96%B4%EB%B2%A0%EC%9D%B4%EC%8A%A4%20onComplete&f=false
 
+                //여기서 DB를 마무리 하는 듯(제일 마지막에 실행되는 듯 )
+                Log.d("test", "3");
             }
         });
     }
 
-    private void upload_db() {
+    private void upload_db() { //값은 초기화해도 해도 내가 직접 db 만들어줘야 함.... 아닌데... 직접 만드는 게 있을텐데.. --> 밑의 ini_db가 내가 안만들어도 초기화됨.
         EndingCnt ec = new EndingCnt();
 
         for(int i = 0; i < 9; i++) {
@@ -186,6 +197,25 @@ public class MainActivity extends AppCompatActivity {
             ec.setCnt(0);
 
             database.getReference().child("endingCnt").push().setValue(ec);
+        }
+    }
+
+    private void ini_db() {
+        EndingCnt ec_initialize = new EndingCnt();
+        Map<String, Object> map = new HashMap<>();
+        DatabaseReference databaseReference; //위치를 말하는 듯.
+
+        for(int i = 0; i < 9; i++) {
+            databaseReference = database.getReference().child("endingCnt").child(String.valueOf(i));
+
+            String t = "end" + String.valueOf(i);
+            map.put("title", t);
+            map.put("count", 0);
+            databaseReference.setValue(map);
+            //ec_initialize.setTitle(t);
+            //ec_initialize.setCount(0);
+
+            //cntDatabase.getReference().child("endingCnt").push().setValue(ec);
         }
     }
 
