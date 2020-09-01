@@ -60,7 +60,7 @@ public class goEndingActivity extends AppCompatActivity {
 
     public void onButtonClickEnd2(View view) {
         //먼저 title 데이터를 전송 이것은 서버에서 key가 될것
-        StringRequest request = new StringRequest(
+        StringRequest request = new StringRequest( //url은 서버의 ip주소
                 Request.Method.POST,
                 "http://172.29.1.106:8089/Server/postEc",
                 new Response.Listener<String>() {

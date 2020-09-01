@@ -1,8 +1,0 @@
-package model1;
-
-public class User {
-	int idx; 			//int(11) not null auto_increment,
-	String uid; 		//varchar(50) not null, 
-	String upw; 		//varchar(50) not null, 
-	String regdate; 	//timestamp not null default now(),
-}

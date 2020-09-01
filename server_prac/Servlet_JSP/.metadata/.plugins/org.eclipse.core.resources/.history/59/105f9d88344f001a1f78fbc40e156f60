@@ -1,4 +1,0 @@
-<%@ page language="java" contentType="text/plain; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!-- 얘는 응답하는 내용자체가 제이슨
-	contentType을 text/plain으로 쓰거나  json/application을 쓰거나-->

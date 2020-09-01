@@ -1,9 +1,0 @@
-import java.util.ArrayList;
-
-import model1.Board;
-
-//제이슨 데이터가 2개가 있는 거. 하나는 정수값, 하나는 보드형 객체의 배열. 
-public class ResBoard {
-	int code;
-	ArrayList<Board> boards; 
-}

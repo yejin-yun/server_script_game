@@ -39,6 +39,8 @@ import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
+    final String TAG = "MainActivity";
+
     private FirebaseDatabase database;
     private int position;
     private List<EndingCnt> ecList = new ArrayList<>();
@@ -110,19 +112,37 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        position = 3;
+        position = 5;
         Button button1 = (Button)findViewById(R.id.button1);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 increse_cnt(database.getReference().child("endingCnt").child(String.valueOf(position)));
-                Log.d("test", "1");
+                Log.d("MainActivity", "1");
             }
         });
     }
 
-    //디비 읽는 법 3가지 --> https://stack07142.tistory.com/282
-    private void read_db() {
+      /*  private void cntDB_handler() { //EDC-project에 있던 거
+        cntDatabase.getReference().child("endingCnt").child(String.valueOf(i)).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                EndingCount ec = dataSnapshot.getValue(EndingCount.class);
+                Map<String, Object> map = new HashMap<>();
+
+                map.put("count", ec.getCount() + 1);
+                cntDatabase.getReference().child("endingCnt").child(String.valueOf(i)).updateChildren(map);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }*/
+
+    /*//디비 읽는 법 3가지 --> https://stack07142.tistory.com/282
+    private void read_db() { //이거 없어도 작동 됨. 아래 increase_cnt를 사용하니까
         //데이터 디비다루기
         database.getReference().child("endingCnt").child(String.valueOf(position)).addListenerForSingleValueEvent(new ValueEventListener() {
 
@@ -135,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
                 Map<String, Object> map = new HashMap<>();
                 map.put("cnt", cnt);
                 database.getReference().child("endingCnt").child(String.valueOf(position)).updateChildren(map);
+                Log.d("MainActivity", "haha");
             }
 
             @Override
@@ -142,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-    }
+    }*/
 
     //카운트 동기화 방지인 트랜잭션으로 저장
     //https://firebase.google.com/docs/database/android/read-and-write?hl=ko
@@ -170,7 +191,8 @@ public class MainActivity extends AppCompatActivity {
 
                 ec.setCnt(cnt);
                 mutableData.setValue(ec);
-                Log.d("test", "2");
+                Log.d("MainActivity", "2");
+                Log.d("MainActivity", "hehe");
                 return Transaction.success(mutableData);
 
             }
@@ -182,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
                 //https://books.google.co.kr/books?id=gzEmDwAAQBAJ&pg=PA396&lpg=PA396&dq=%ED%8C%8C%EC%9D%B4%EC%96%B4%EB%B2%A0%EC%9D%B4%EC%8A%A4+onComplete&source=bl&ots=bVl_-8S6MN&sig=ACfU3U1JmVaNzpIspvwG8eA1f8OrKDXGDw&hl=ko&sa=X&ved=2ahUKEwiD98jH0rbqAhUbIIgKHXZUC50Q6AEwA3oECAoQAQ#v=onepage&q=%ED%8C%8C%EC%9D%B4%EC%96%B4%EB%B2%A0%EC%9D%B4%EC%8A%A4%20onComplete&f=false
 
                 //여기서 DB를 마무리 하는 듯(제일 마지막에 실행되는 듯 )
-                Log.d("test", "3");
+                Log.d("MainActivity", "3");
             }
         });
     }

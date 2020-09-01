@@ -1,8 +1,0 @@
-import java.util.ArrayList;
-
-import model1.Board;
-
-public class ResBoard {
-	int code;
-	ArrayList<Board> boards; 
-}

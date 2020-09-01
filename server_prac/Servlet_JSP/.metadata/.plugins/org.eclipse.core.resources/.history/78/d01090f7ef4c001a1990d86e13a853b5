@@ -1,7 +1,0 @@
-package com.w;
-
-import javax.servlet.http.HttpServletRequestWrapper;
-
-public class RequestWrapper extends HttpServletRequestWrapper {
-
-}
