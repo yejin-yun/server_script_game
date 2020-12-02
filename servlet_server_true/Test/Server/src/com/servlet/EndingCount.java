@@ -22,6 +22,7 @@ import com.google.gson.Gson;
 
 import model.*;
 
+//model(데이터베이스 처리) --> 나중에 내가 쓴거
 
 
 @WebServlet(name = "ec", urlPatterns = { "/ec" })

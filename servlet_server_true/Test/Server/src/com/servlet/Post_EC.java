@@ -19,6 +19,7 @@ import com.google.gson.Gson;
 
 import model.Ending;
 
+//controller
 
 @WebServlet(name = "postEc", urlPatterns = { "/postEc" })
 public class Post_EC extends HttpServlet {

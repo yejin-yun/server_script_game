@@ -1,5 +1,7 @@
 package model;
 
+//model
+
 public class Ending {
 	int id;
 	String title;

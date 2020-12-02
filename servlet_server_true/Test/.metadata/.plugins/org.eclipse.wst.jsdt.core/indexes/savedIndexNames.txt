@@ -1,7 +1,7 @@
-INDEX VERSION 1.4+D:\경진대회\Test\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+INDEX VERSION 1.4+C:\Users\yunyejin\Documents\GitHub\server_script_game\servlet_server_true\Test\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
 2501520862.index
-307563289.index
-71297770.index
-1261938699.index
-4258946578.index
-2067713342.index
+2717261416.index
+3468473888.index
+230851695.index
+1449647020.index
+1820740276.index
